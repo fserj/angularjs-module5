@@ -43,7 +43,17 @@ function routeConfig ($stateProvider) {
     })
     .state('myInfo',{
       url : '/myInfo',
-      templateUrl : 'src/public/my-info/my-info.html'
+      templateUrl : 'src/public/my-info/my-info.html',
+      controller : 'MyInfoController',
+      controllerAs: 'infoController',
+      resolve: {
+        selectedItem: ['Order', function (Order) {
+          return Order.getItem();
+        }],
+        remoteItem:['Order','MenuService',function(Order,MenuService){
+          return MenuService.getMenuItem(Order.getItem());
+        }]
+      }
     })
     .state('signup',{
       url : '/signup',

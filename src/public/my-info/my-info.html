@@ -1,1 +1,13 @@
-my info
+
+<div>
+    <div ng-show="infoController.selectedItem === undefined">
+      Not Signed Up Yet.
+      <a ui-sref="signup">Sign up Now!</a>
+    </div>
+
+    <div ng-if="infoController.selectedItem !== undefined">
+        my info: {{infoController.selectedItem}}
+        {{infoController.remoteItem }}
+    </div>
+
+<div>
