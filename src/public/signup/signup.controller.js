@@ -4,27 +4,26 @@
 "use strict";
 
 angular.module('public')
-.controller('SignupController', [ '$scope','$location','Order',SignupController]);
+.controller('SignupController', [ '$scope','$location','Order','MenuService',SignupController]);
 
-function SignupController( $scope, $location,Order) {
+function SignupController( $scope, $location,Order,MenuService) {
   var reg = this;
-
+  reg.invalidItem = false;
   console.log('SignupController is here');
   console.log("Order: "+Order);
 
   reg.submit = function(){
-    console.log(reg.firstName);
-    console.log(reg.lastName);
-    console.log(reg.email);
-    console.log(reg.phone);
-    console.log(reg.menuNumber);
-    Order.setItem(reg.menuNumber);
 
-    console.log("form submited");
+    var promise = MenuService.getMenuItem(reg.menuNumber);
+    promise.then(function(response){
+      Order.setItem(response, reg);
 
-    //$location.path("SuccessPage");
-    $location.path('/successPage');
-
+      console.log(response);
+      $location.path('/successPage');
+    },function(data){
+      reg.invalidItem = true;
+      console.log("error retrieving data");
+    });
   }
 }
 

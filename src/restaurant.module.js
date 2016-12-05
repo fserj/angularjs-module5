@@ -7,14 +7,18 @@
 angular.module('restaurant', ['public'])
 .service('Order',function(){
   console.log("----OrderServicecreated --- ");
-  this.setItem = function(item) {
-      this.item = item;
-      console.log("----item: "+item);
+  this.setItem = function(itemResponse,registrationInfo) {
+      this.itemResponse = itemResponse;
+      this.registrationInfo = registrationInfo;
+      console.log("----firstName: "+registrationInfo.firstName);
   };
 
   this.getItem = function(){
-    return this.item;
+    return this.itemResponse;
   };
+  this.getUserInfo = function(){
+    return this.registrationInfo;
+  }
 })
 .config(config);
 

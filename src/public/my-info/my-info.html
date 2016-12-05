@@ -1,13 +1,31 @@
 
 <div>
-    <div ng-show="infoController.selectedItem === undefined">
+    <div ng-show="infoController.userInfo === undefined">
       Not Signed Up Yet.
       <a ui-sref="signup">Sign up Now!</a>
     </div>
 
-    <div ng-if="infoController.selectedItem !== undefined">
-        my info: {{infoController.selectedItem}}
-        {{infoController.remoteItem }}
+    <div ng-if="infoController.userInfo !== undefined">
+      First Name: {{infoController.userInfo.firstName}}<br>
+      Last Name: {{infoController.userInfo.lastName}}<br>
+      Email: {{infoController.userInfo.email}}<br>
+      Phone Number: {{infoController.userInfo.phone}}<br>
+      <br>
+
+
+
+      <div class="row">
+          <div class="col-sm-5">
+            <div class="menu-item-photo">
+              <div>{{infoController.remoteItem.short_name}}</div>
+              <img class="img-responsive" width="250" height="150" ng-src="{{infoController.basePath}}/images/{{infoController.remoteItem.short_name}}.jpg" alt="{{infoController.remoteItem.name}}">
+            </div>
+          </div>
+          <div class="menu-item-description col-sm-7">
+              <h3 class="menu-item-title">{{infoController.remoteItem.name}}</h3>
+              <p class="menu-item-details">{{infoController.remoteItem.description}}</p>
+          </div>
+      </div>
     </div>
 
 <div>

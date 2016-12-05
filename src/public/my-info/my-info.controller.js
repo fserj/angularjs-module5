@@ -4,21 +4,16 @@
 "use strict";
 
 angular.module('public')
-.controller('MyInfoController', ['selectedItem','remoteItem',MyInfoController]);
+.controller('MyInfoController', ['Order','ApiPath',MyInfoController]);
 
-//MyInfoController.$inject = ['selectedItem'];
-function MyInfoController(selectedItem,remoteItem) {
+function MyInfoController(Order,ApiPath) {
     var $ctrl = this;
+    $ctrl.basePath = ApiPath;
+    $ctrl.remoteItem = Order.getItem();
+    $ctrl.userInfo = Order.getUserInfo();
 
-    console.log(selectedItem);
-    if(selectedItem) {
-      $ctrl.selectedItem = selectedItem;
-      $ctrl.remoteItem = remoteItem;
     }
 
-
-
-  }
 
 
 })();
